@@ -56,7 +56,7 @@ npm run start
 
 ## API Documentation
 
-Swagger documentation is available at:
+Swagger documentation is available after the server is started:
 
 http://localhost:3000/api/swagger
 
