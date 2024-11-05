@@ -7,7 +7,6 @@
 - PostgreSQL
 - JWT Authentication
 - Swagger Documentation
-- Docker
 
 ## Features
 
@@ -15,7 +14,6 @@
 - JWT-based authorization with refresh tokens
 - Request logging system
 - Swagger API documentation
-- Docker containerization
 - Unit tests
 
 ## Installation and Setup
