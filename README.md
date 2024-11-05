@@ -20,7 +20,7 @@
 
 ## Installation and Setup
 
-### Step 1: Clone the repository
+### Step 1: Clone the repository git clone https://github.com/antsman8/Zoftify
 
 ### Step 2: Environment Setup
 
