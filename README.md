@@ -50,9 +50,8 @@ BACKEND_PORT=3000
 1. Install dependencies:
    npm i
    
-2.  Run server
-
-npm run start
+2. Run server
+   npm run start
 
 ## API Documentation
 
