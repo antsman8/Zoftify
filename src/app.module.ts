@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_FILTER } from '@nestjs/core';
 import { UsersModule } from './users/users.module';
 import { LogModule } from './log/log.module';
+import { AuthModule } from './auth/auth.module';
 import { User } from './users/users.model';
 import { Log } from './log/log.model';
 import { GlobalExceptionFilter } from './exceptions/filters/http-exception.filter';
@@ -25,6 +26,7 @@ import { GlobalExceptionFilter } from './exceptions/filters/http-exception.filte
     }),
     UsersModule,
     LogModule,
+    AuthModule,
   ],
   providers: [
     {
