@@ -27,7 +27,7 @@
 Create `.env` file in the root directory:
 
 
-POSTGRES_HOST=localhost # Use 'db' for Docker deployment
+POSTGRES_HOST=db # Use 'localhost' for local deployment
 POSTGRES_PORT=5432
 POSTGRES_DATABASE=yourdatabase
 POSTGRES_USERNAME=yourusername
