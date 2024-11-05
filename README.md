@@ -45,7 +45,26 @@ BACKEND_PORT=3000
 
 ### Step 3: Launch Options
 
-#### Option 1: Local Development
+
+
+#### Option 1: Docker Deployment
+
+Steps to Deploy with Docker
+
+# Start Docker on your computer
+
+# Stop any running containers (just in case)
+
+docker-compose down -v
+
+# Build and start containers
+
+docker-compose up --build
+
+
+
+
+#### Option 2: Local Development
 
 # Install dependencies
 
@@ -57,11 +76,7 @@ npm run start:dev
 
 ## to run locally, you must already have a database created
 
-#### Option 2: Docker Deployment
 
-# Build and start containers
-
-docker-compose up --build
 
 ## API Documentation
 
@@ -137,7 +152,6 @@ src/
 ├── log/ # Logging module
 └── exceptions/ # Custom exceptions and error handling
 
-```
 
 ## Error Handling
 
@@ -166,4 +180,3 @@ All API requests are automatically logged in the database with:
 
 
 
-```
