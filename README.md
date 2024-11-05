@@ -26,7 +26,6 @@
 
 Create `.env` file in the root directory:
 
-
 POSTGRES_HOST=db # Use 'localhost' for local deployment
 POSTGRES_PORT=5432
 POSTGRES_DATABASE=yourdatabase
@@ -42,8 +41,6 @@ BACKEND_PORT=3000
 
 ### Step 3: Launch Options
 
-
-
 #### Option 1: Docker Deployment
 
 Steps to Deploy with Docker
@@ -58,22 +55,24 @@ docker-compose down -v
 
 docker-compose up --build
 
-
-
-
 #### Option 2: Local Development
 
-# Install dependencies
+### Prerequisites
 
-npm install
+- Node.js (version 16 or higher)
+- PostgreSQL (version 12 or higher)
+- npm or yarn
 
-# Start the application in development mode
+### Setup
 
-npm run start:dev
+1. Install dependencies:
+   npm i
 
-## to run locally, you must already have a database created
+2. Initialize the database:
+   npm run init-db
 
-
+3. Start the server:
+   npm run start
 
 ## API Documentation
 
@@ -149,20 +148,18 @@ src/
 ├── log/ # Logging module
 └── exceptions/ # Custom exceptions and error handling
 
-
 ## Error Handling
 
 The API uses custom exception filters and provides detailed error messages:
 
 json
 {
-  "statusCode": 400,
-  "message": "Validation failed: password must be at least 6 characters",
-  "error": "Bad Request",
-  "timestamp": "2024-02-20T12:00:00Z",
-  "path": "/api/auth/sign-up"
+"statusCode": 400,
+"message": "Validation failed: password must be at least 6 characters",
+"error": "Bad Request",
+"timestamp": "2024-02-20T12:00:00Z",
+"path": "/api/auth/sign-up"
 }
-
 
 ## Logging System
 
@@ -174,6 +171,3 @@ All API requests are automatically logged in the database with:
 - Status code
 - User agent
 - IP address
-
-
-
