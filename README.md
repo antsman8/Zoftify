@@ -41,15 +41,16 @@ BACKEND_PORT=3000
 
 # Create your database in Postgresql
 
-# Install dependencies
+### Prerequisites
 
-npm install
+- Node.js (version 16 or higher)
+- PostgreSQL (version 12 or higher)
+- npm or yarn
 
-# Start the application in development mode
+### Setup
 
-npm run start:dev
-
-## to run locally, you must already have a database created
+1. Install dependencies:
+   npm i
 
 ## API Documentation
 
