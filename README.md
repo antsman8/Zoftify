@@ -26,7 +26,7 @@
 
 Create `.env` file in the root directory:
 
-POSTGRES_HOST=db # Use 'localhost' for local deployment
+POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DATABASE=yourdatabase
 POSTGRES_USERNAME=yourusername
@@ -37,11 +37,7 @@ JWT_REFRESH_TOKEN_EXPIRATION=7d
 BACKEND_HOST=0.0.0.0
 BACKEND_PORT=3000
 
-**Important**: Use `POSTGRES_HOST=localhost` for local development and `POSTGRES_HOST=db` for Docker deployment.
-
 ### Step 3: Launch Options
-
-#### Option 1: Local Development
 
 # Create your database in Postgresql
 
@@ -54,20 +50,6 @@ npm install
 npm run start:dev
 
 ## to run locally, you must already have a database created
-
-#### Option 2: Docker Deployment
-
-Steps to Deploy with Docker
-
-# Start Docker on your computer
-
-# Stop any running containers (just in case)
-
-docker-compose down -v
-
-# Build and start containers
-
-docker-compose up --build
 
 ## API Documentation
 
