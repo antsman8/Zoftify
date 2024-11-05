@@ -36,7 +36,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       path: request.url,
     };
 
-    // Логируем ошибку
     this.logError(errorResponse, exception);
 
     response.status(status).json(errorResponse);
@@ -48,11 +47,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       stack: exception.stack,
     };
 
-    // Для критических ошибок используем console.error
     if (errorResponse.statusCode >= 500) {
       console.error(JSON.stringify(errorLog, null, 2));
     } else {
-      // Для остальных ошибок используем обычный лог
       console.log(JSON.stringify(errorLog, null, 2));
     }
   }

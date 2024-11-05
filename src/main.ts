@@ -9,7 +9,6 @@ async function bootstrap() {
   const host = process.env.BACKEND_HOST || '0.0.0.0';
   const port = parseInt(process.env.BACKEND_PORT, 10) || 3000;
 
-  // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Zoftify API')
     .setDescription('The Zoftify API description')

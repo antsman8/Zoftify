@@ -26,7 +26,6 @@
 
 Create `.env` file in the root directory:
 
-
 POSTGRES_HOST=db # Use 'localhost' for local deployment
 POSTGRES_PORT=5432
 POSTGRES_DATABASE=yourdatabase
@@ -42,9 +41,21 @@ BACKEND_PORT=3000
 
 ### Step 3: Launch Options
 
+#### Option 1: Local Development
 
+# Create your database in Postgresql
 
-#### Option 1: Docker Deployment
+# Install dependencies
+
+npm install
+
+# Start the application in development mode
+
+npm run start:dev
+
+## to run locally, you must already have a database created
+
+#### Option 2: Docker Deployment
 
 Steps to Deploy with Docker
 
@@ -57,23 +68,6 @@ docker-compose down -v
 # Build and start containers
 
 docker-compose up --build
-
-
-
-
-#### Option 2: Local Development
-
-# Install dependencies
-
-npm install
-
-# Start the application in development mode
-
-npm run start:dev
-
-## to run locally, you must already have a database created
-
-
 
 ## API Documentation
 
@@ -149,20 +143,18 @@ src/
 ├── log/ # Logging module
 └── exceptions/ # Custom exceptions and error handling
 
-
 ## Error Handling
 
 The API uses custom exception filters and provides detailed error messages:
 
 json
 {
-  "statusCode": 400,
-  "message": "Validation failed: password must be at least 6 characters",
-  "error": "Bad Request",
-  "timestamp": "2024-02-20T12:00:00Z",
-  "path": "/api/auth/sign-up"
+"statusCode": 400,
+"message": "Validation failed: password must be at least 6 characters",
+"error": "Bad Request",
+"timestamp": "2024-02-20T12:00:00Z",
+"path": "/api/auth/sign-up"
 }
-
 
 ## Logging System
 
@@ -174,6 +166,3 @@ All API requests are automatically logged in the database with:
 - Status code
 - User agent
 - IP address
-
-
-
