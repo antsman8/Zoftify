@@ -1,73 +1,169 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# User Management and Logging System API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Technologies Used
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- NestJS
+- TypeORM
+- PostgreSQL
+- JWT Authentication
+- Swagger Documentation
+- Docker
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- User registration and authentication
+- JWT-based authorization with refresh tokens
+- Request logging system
+- Swagger API documentation
+- Docker containerization
+- Unit tests
 
-## Installation
+## Installation and Setup
 
-```bash
-$ npm install
+### Step 1: Clone the repository
+
+### Step 2: Environment Setup
+
+Create `.env` file in the root directory:
+
+env
+
+# For local development
+
+POSTGRES_HOST=localhost # Use 'db' for Docker deployment
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=yourdatabase
+POSTGRES_USERNAME=yourusername
+POSTGRES_PASSWORD=yourpassword
+AUTH_JWT_SECRET=WOnHQTHdJTmHncwuADumW265EPN3Ku9p # random value
+JWT_ACCESS_TOKEN_EXPIRATION=15m
+JWT_REFRESH_TOKEN_EXPIRATION=7d
+BACKEND_HOST=0.0.0.0
+BACKEND_PORT=3000
+
+**Important**: Use `POSTGRES_HOST=localhost` for local development and `POSTGRES_HOST=db` for Docker deployment.
+
+### Step 3: Launch Options
+
+#### Option 1: Local Development
+
+# Install dependencies
+
+npm install
+
+# Start the application in development mode
+
+npm run start:dev
+
+## to run locally, you must already have a database created
+
+#### Option 2: Docker Deployment
+
+# Build and start containers
+
+docker-compose up --build
+
+## API Documentation
+
+Swagger documentation is available at:
+
+http://localhost:3000/api/swagger
+
+## Authentication Flow
+
+1. Register a new user:
+
+POST /api/auth/sign-up
+{
+"name": "John Doe",
+"email": "john@example.com",
+"password": "password123"
+}
+
+2. Login to get tokens:
+
+POST /api/auth/sign-in
+{
+"email": "john@example.com",
+"password": "password123"
+}
+
+3. Use the access token in protected routes:
+
+Authorization: Bearer <your_access_token>
+
+4. When access token expires, use refresh token:
+
+POST /api/auth/refresh
+{
+"refreshToken": "your_refresh_token"
+}
+
+## Protected Routes
+
+All routes except authentication endpoints require JWT authentication:
+
+- User management (`/api/users/*`)
+  - Create user
+  - Get all users
+  - Get user by ID
+  - Update user
+  - Delete user
+- Logs management (`/api/logs/*`)
+  - Get all logs
+  - Get log by ID
+  - Get logs by endpoint
+
+## Testing
+
+The project includes unit tests for the authentication service:
+
+# Run tests
+
+npm run test
+
+# Run tests with coverage report
+
+npm run test:cov
+
+## Project Structure
+
+src/
+├── auth/ # Authentication module
+│ ├── dto/ # Data Transfer Objects
+│ ├── guards/ # JWT Guards
+│ └── strategies/ # JWT Strategy
+├── users/ # User management module
+├── log/ # Logging module
+└── exceptions/ # Custom exceptions and error handling
+
 ```
 
-## Running the app
+## Error Handling
 
-```bash
-# development
-$ npm run start
+The API uses custom exception filters and provides detailed error messages:
 
-# watch mode
-$ npm run start:dev
+json
+{
+  "statusCode": 400,
+  "message": "Validation failed: password must be at least 6 characters",
+  "error": "Bad Request",
+  "timestamp": "2024-02-20T12:00:00Z",
+  "path": "/api/auth/sign-up"
+}
 
-# production mode
-$ npm run start:prod
+
+## Logging System
+
+All API requests are automatically logged in the database with:
+
+- Request method
+- Endpoint
+- Execution time
+- Status code
+- User agent
+- IP address
+
+
+
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
